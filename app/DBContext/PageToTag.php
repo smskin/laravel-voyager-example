@@ -1,0 +1,11 @@
+<?php
+
+namespace App\DBContext;
+
+use Illuminate\Database\Eloquent\Model;
+
+
+class PageToTag extends Model
+{
+    
+}

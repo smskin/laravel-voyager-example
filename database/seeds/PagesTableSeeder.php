@@ -229,6 +229,32 @@ class PagesTableSeeder extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($pageDataType, 'page_belongstomany_tag_relationship');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'relationship',
+                'display_name' => __('seeders.data_rows.tags'),
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => [
+                    'model'       => 'App\\DBContext\\Tag',
+                    'table'       => 'tags',
+                    'type'        => 'belongsToMany',
+                    'column'      => 'id',
+                    'key'         => 'id',
+                    'label'       => 'name',
+                    'pivot_table' => 'page_to_tag',
+                    'pivot'       => 1,
+                    'taggable'    => 'on'
+                ],
+                'order'        => 10,
+            ])->save();
+        }
+
         //Menu Item
         $menu = Menu::where('name', 'admin')->firstOrFail();
         $menuItem = MenuItem::firstOrNew([

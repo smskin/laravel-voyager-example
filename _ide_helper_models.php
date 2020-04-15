@@ -54,6 +54,17 @@ namespace App\DBContext{
 
 namespace App\DBContext{
 /**
+ * App\DBContext\PageToTag
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\PageToTag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\PageToTag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\PageToTag query()
+ */
+	class PageToTag extends \Eloquent {}
+}
+
+namespace App\DBContext{
+/**
  * App\DBContext\Post
  *
  * @property int $id
@@ -76,6 +87,7 @@ namespace App\DBContext{
  * @property-read null $translated
  * @property-read \Illuminate\Database\Eloquent\Collection|\TCG\Voyager\Models\Translation[] $translations
  * @property-read int|null $translations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Post isOwner()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Post newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Post newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\TCG\Voyager\Models\Post published()
@@ -100,6 +112,38 @@ namespace App\DBContext{
  * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Post withTranslations($locales = null, $fallback = true)
  */
 	class Post extends \Eloquent {}
+}
+
+namespace App\DBContext{
+/**
+ * App\DBContext\PostToTag
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\PostToTag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\PostToTag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\PostToTag query()
+ */
+	class PostToTag extends \Eloquent {}
+}
+
+namespace App\DBContext{
+/**
+ * App\DBContext\Tag
+ *
+ * @property int $id
+ * @property string|null $name
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $slug
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\DBContext\Tag whereUpdatedAt($value)
+ */
+	class Tag extends \Eloquent {}
 }
 
 namespace App\DBContext{

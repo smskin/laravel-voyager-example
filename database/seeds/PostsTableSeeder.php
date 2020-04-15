@@ -1,12 +1,12 @@
 <?php
 
+use App\DBContext\Post;
 use Illuminate\Database\Seeder;
 use TCG\Voyager\Models\DataRow;
 use TCG\Voyager\Models\DataType;
 use TCG\Voyager\Models\Menu;
 use TCG\Voyager\Models\MenuItem;
 use TCG\Voyager\Models\Permission;
-use TCG\Voyager\Models\Post;
 
 class PostsTableSeeder extends Seeder
 {
@@ -23,9 +23,9 @@ class PostsTableSeeder extends Seeder
                 'display_name_singular' => __('voyager::seeders.data_types.post.singular'),
                 'display_name_plural'   => __('voyager::seeders.data_types.post.plural'),
                 'icon'                  => 'voyager-news',
-                'model_name'            => 'TCG\\Voyager\\Models\\Post',
+                'model_name'            => 'App\\DBContext\\Post',
                 'policy_name'           => 'TCG\\Voyager\\Policies\\PostPolicy',
-                'controller'            => '',
+                'controller'            => 'App\\Http\\Controllers\\Admin\\PostController',
                 'generate_permissions'  => 1,
                 'description'           => '',
             ])->save();
@@ -299,6 +299,32 @@ class PostsTableSeeder extends Seeder
             ])->save();
         }
 
+        $dataRow = $this->dataRow($postDataType, 'post_belongstomany_tag_relationship');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'relationship',
+                'display_name' => __('seeders.data_rows.tags'),
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => [
+                    'model'       => 'App\\DBContext\\Tag',
+                    'table'       => 'tags',
+                    'type'        => 'belongsToMany',
+                    'column'      => 'id',
+                    'key'         => 'id',
+                    'label'       => 'name',
+                    'pivot_table' => 'post_to_tag',
+                    'pivot'       => 1,
+                    'taggable'    => 'on'
+                ],
+                'order'        => 10,
+            ])->save();
+        }
+
         //Menu Item
         $menu = Menu::where('name', 'admin')->firstOrFail();
         $menuItem = MenuItem::firstOrNew([
@@ -318,7 +344,7 @@ class PostsTableSeeder extends Seeder
         }
 
         //Permissions
-        Permission::generateFor('posts');
+        $this->generatePermissions('posts');
 
         //Content
         $post = $this->findPost('lorem-ipsum-post');
@@ -392,6 +418,17 @@ class PostsTableSeeder extends Seeder
                 'featured'         => 0,
             ])->save();
         }
+    }
+
+    protected function generatePermissions(string $tableName): void
+    {
+        Permission::firstOrCreate(['key' => 'browse_all_'.$tableName, 'table_name' => $tableName]);
+        Permission::firstOrCreate(['key' => 'browse_'.$tableName, 'table_name' => $tableName]);
+        Permission::firstOrCreate(['key' => 'browse_'.$tableName, 'table_name' => $tableName]);
+        Permission::firstOrCreate(['key' => 'read_'.$tableName, 'table_name' => $tableName]);
+        Permission::firstOrCreate(['key' => 'edit_'.$tableName, 'table_name' => $tableName]);
+        Permission::firstOrCreate(['key' => 'add_'.$tableName, 'table_name' => $tableName]);
+        Permission::firstOrCreate(['key' => 'delete_'.$tableName, 'table_name' => $tableName]);
     }
 
     /**

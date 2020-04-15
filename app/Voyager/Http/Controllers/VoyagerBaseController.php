@@ -1,7 +1,7 @@
 <?php
 /** @noinspection PhpUndefinedMethodInspection */
 
-namespace App\Http\Controllers\Admin;
+namespace App\Voyager\Http\Controllers;
 
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;

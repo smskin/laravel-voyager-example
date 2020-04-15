@@ -2,12 +2,9 @@
 
 namespace App\Providers;
 
-use App\DBContext\Page;
-use App\DBContext\Post;
-use App\DBContext\User;
 use Exception;
 use Illuminate\Support\ServiceProvider;
-use Voyager;
+use \App\Voyager\ServiceProvider as VoyagerServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,9 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Voyager::useModel('App\DBContext\User', User::class);
-        Voyager::useModel('App\DBContext\Page', Page::class);
-        Voyager::useModel('App\DBContext\Post', Post::class);
+        $this->app->register(VoyagerServiceProvider::class);
     }
 
     /**

@@ -19,9 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        Voyager::useModel('User', User::class);
-        Voyager::useModel('Page', Page::class);
-        Voyager::useModel('Post', Post::class);
+        Voyager::useModel('App\DBContext\User', User::class);
+        Voyager::useModel('App\DBContext\Page', Page::class);
+        Voyager::useModel('App\DBContext\Post', Post::class);
     }
 
     /**

@@ -195,7 +195,7 @@ return [
 
     'additional_js' => [
         '/vendor/voyager/js/app.js',
-        '/vendor/voyager/js/voyager_tinymce.js',
+        '/vendor/voyager/js/tinymce/init.js',
     ],
 
     'googlemaps' => [

@@ -20,15 +20,17 @@ class PostReviewController extends VoyagerBaseController
     protected function applyRelationQueryBuilder(Model $context, Model $model, array $dependsOnFields): EloquentBuilder
     {
         if ($model instanceof PostReview){
-            $model = $model->where('id','<>', $context->id);
+            if ($context->exists){
+                $model = $model->where('id','<>', $context->id);
+            }
 
             foreach ($dependsOnFields as $depend){
                 $field = $depend['field'];
                 $operator = $depend['operator'];
                 $value = $depend['value'];
-                /** @noinspection PhpUndefinedMethodInspection */
                 $model = $model->where($field, $operator, $value);
             }
+            /** @noinspection PhpIncompatibleReturnTypeInspection */
             return $model;
         }
         return $model::query();

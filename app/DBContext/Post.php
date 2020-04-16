@@ -12,6 +12,8 @@ class Post extends BasePost
     use Translatable;
     use Resizable;
 
+    public $table = 'posts';
+
     /** @noinspection PhpUnused */
     public function scopeIsOwner(Builder $builder, User $user = null): Builder
     {

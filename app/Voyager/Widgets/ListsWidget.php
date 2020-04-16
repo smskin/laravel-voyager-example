@@ -22,7 +22,7 @@ class ListsWidget  extends BaseDimmer
      */
     public function run()
     {
-        return view('voyager.widgets.links_widget');
+        return view('vendor.voyager.widgets.links_widget');
     }
 
     /**

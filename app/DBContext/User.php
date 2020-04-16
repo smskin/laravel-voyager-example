@@ -9,6 +9,8 @@ class User extends BaseUser
 {
     use Notifiable;
 
+    public $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *

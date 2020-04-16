@@ -15,7 +15,7 @@ class CreatePageToTagTable extends Migration
     {
         Schema::create('page_to_tag', function (Blueprint $table) {
             $table->id();
-            $table->integer('page_id')->unsigned();
+            $table->bigInteger('page_id')->unsigned();
             $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
             $table->bigInteger('tag_id')->unsigned();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');

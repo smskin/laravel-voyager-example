@@ -66,43 +66,65 @@
 
             @if(isset($view) && ($view == 'browse' || $view == 'read'))
 
-                @php
-                    $relationshipData = (isset($data)) ? $data : $dataTypeContent;
-                    $model = app($options->model);
-
-                    $dataType = Voyager::model('DataType')->where('slug', '=', $model->table)->first();
-                    $selected_values = $model::where($options->column, '=', $relationshipData->{$options->key})->get()->map(function ($item, $key) use ($options, $dataType) {
-                        return (object)[
-                            'link'=> route('voyager.'.$dataType->slug.'.show', [$item->getKey()], false),
-                            'text'=> $item->{$options->label}
-                        ];
-                    });
-                @endphp
-
-                @if($view == 'browse')
+                @if ($view === 'browse')
                     @php
-                        $string_values = implode(", ", $selected_values->map(function($obj){return $obj->text; })->all());
-                        if(mb_strlen($string_values) > 25){ $string_values = mb_substr($string_values, 0, 25) . '...'; }
+                        $relationshipData = (isset($data)) ? $data : $dataTypeContent;
+                        $model = app($options->model);
+                        $selected_values = $model::where($options->column, '=', $relationshipData->{$options->key})->get()->map(function ($item, $key) use ($options) {
+                            return $item->{$options->label};
+                        })->all();
+                         $string_values = implode(", ", $selected_values);
+                         if(mb_strlen($string_values) > 25){ $string_values = mb_substr($string_values, 0, 25) . '...'; }
                     @endphp
+
                     @if(empty($selected_values))
                         <p>{{ __('voyager::generic.no_results') }}</p>
                     @else
                         <p>{{ $string_values }}</p>
                     @endif
                 @else
+                    @php
+                        $relationshipData = (isset($data)) ? $data : $dataTypeContent;
+                        $model = app($options->model);
+                        $dataType = Voyager::model('DataType')->where('slug', '=', $model->table)->first();
+
+                        if ($options->list_type === 'nested'){
+                            function getList($model, $options, $relationshipData, $dataType):  array
+                            {
+                                return $model::where($options->column, $relationshipData->{$options->key})->get()->map(function($item, $key) use ($model, $dataType, $options, $relationshipData){
+                                    $link =  route('voyager.'.$dataType->slug.'.show', [$item->getKey()], false);
+                                    $text = $item->{$options->label};
+                                    $child = getList($model, $options, $item, $dataType);
+                                    return [
+                                        'link'=> $link,
+                                        'text'=> $text,
+                                        'children'=>$child
+                                    ];
+                                })->all();
+                            }
+
+                            $selected_values  = getList($model, $options, $relationshipData, $dataType);
+                        } else {
+                             $selected_values = $model::where($options->column, '=', $relationshipData->{$options->key})->get()->map(function ($item, $key) use ($options, $dataType) {
+                                return [
+                                    'link'=> route('voyager.'.$dataType->slug.'.show', [$item->getKey()], false),
+                                    'text'=> $item->{$options->label},
+                                    'children'=>[]
+                                ];
+                            });
+                        }
+                    @endphp
+
                     @if(empty($selected_values))
                         <p>{{ __('voyager::generic.no_results') }}</p>
                     @else
                         <ul>
                             @foreach($selected_values as $selected_value)
-                                <li>
-                                    <a href="{{ $selected_value->link }}">{{ $selected_value->text }}</a>
-                                </li>
+                                @include('vendor.voyager.formfields.partials.relationship.has_many.read.recursive_list', $selected_value)
                             @endforeach
                         </ul>
                     @endif
                 @endif
-
             @else
 
                 @php

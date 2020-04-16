@@ -233,6 +233,32 @@ class PagesTableSeeder extends Seeder
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'relationship',
+                'display_name' => __('voyager::seeders.data_rows.author'),
+                'required'     => 0,
+                'browse'       => 1,
+                'read'         => 1,
+                'edit'         => 1,
+                'add'          => 1,
+                'delete'       => 1,
+                'details'      => [
+                    'model'       => 'App\\DBContext\\User',
+                    'table'       => 'users',
+                    'type'        => 'belongsTo',
+                    'column'      => 'author_id',
+                    'key'         => 'id',
+                    'label'       => 'name',
+                    'pivot_table' => 'users',
+                    'pivot'       => 0,
+                    'taggable'    => '0'
+                ],
+                'order'        => 10,
+            ])->save();
+        }
+
+        $dataRow = $this->dataRow($pageDataType, 'page_belongsto_user_relationship');
+        if (!$dataRow->exists) {
+            $dataRow->fill([
+                'type'         => 'relationship',
                 'display_name' => __('seeders.data_rows.tags'),
                 'required'     => 0,
                 'browse'       => 1,
@@ -257,6 +283,22 @@ class PagesTableSeeder extends Seeder
 
         //Menu Item
         $menu = Menu::where('name', 'admin')->firstOrFail();
+
+        $rootMenuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => __('seeders.menu_items.page_root'),
+            'url'     => '',
+        ]);
+        if (!$rootMenuItem->exists) {
+            $rootMenuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-file-text',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 4,
+            ])->save();
+        }
+
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
             'title'   => __('voyager::seeders.menu_items.pages'),
@@ -268,8 +310,8 @@ class PagesTableSeeder extends Seeder
                 'target'     => '_self',
                 'icon_class' => 'voyager-file-text',
                 'color'      => null,
-                'parent_id'  => null,
-                'order'      => 7,
+                'parent_id'  => $rootMenuItem->id,
+                'order'      => 1,
             ])->save();
         }
 

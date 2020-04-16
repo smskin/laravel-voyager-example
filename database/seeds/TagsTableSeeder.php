@@ -119,6 +119,11 @@ class TagsTableSeeder extends Seeder
 
         //Menu Item
         $menu = Menu::where('name', 'admin')->firstOrFail();
+        $rootMenuItem = MenuItem::where('menu_id', $menu->id)
+            ->where('title',__('seeders.menu_items.dictionaries'))
+            ->whereNull('parent_id')
+            ->firstOrFail();
+
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
             'title'   => __('seeders.menu_items.tags'),
@@ -128,9 +133,9 @@ class TagsTableSeeder extends Seeder
         if (!$menuItem->exists) {
             $menuItem->fill([
                 'target'     => '_self',
-                'icon_class' => 'voyager-news',
+                'icon_class' => 'voyager-thumb-tack',
                 'color'      => null,
-                'parent_id'  => null,
+                'parent_id'  => $rootMenuItem->id,
                 'order'      => 6,
             ])->save();
         }

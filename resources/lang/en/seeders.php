@@ -4,12 +4,17 @@ return [
     'data_rows'  => [
         'tag' => 'Tag',
         'tags' => 'Tags',
-        'post_review' => 'Post Review',
-        'post_reviews' => 'Post Reviews',
+        'post_review' => 'Post review',
+        'post_reviews' => 'Post reviews',
         'post' => 'Post',
         'posts' => 'Posts',
         'parent_post_review'=>'Parent post review',
-        'child_post_reviews'=>'Child post reviews'
+        'child_post_reviews'=>'Child post reviews',
+        'page'=> 'Page',
+        'page_review'=>'Page review',
+        'page_reviews'=>'Page reviews',
+        'parent_page_review'=>'Parent page review',
+        'child_page_reviews'=>'Child page reviews',
     ],
     'data_types' => [
         'tag'     => [
@@ -20,9 +25,17 @@ return [
             'singular' => 'Post review',
             'plural'   => 'Post reviews',
         ],
+        'page_review'     => [
+            'singular' => 'Page review',
+            'plural'   => 'Page reviews',
+        ],
     ],
     'menu_items' => [
         'tags'        => 'Tags',
+        'post_root' => 'Posts',
         'post_reviews'        => 'Post reviews',
+        'page_root' => 'Pages',
+        'page_reviews'        => 'Page reviews',
+        'dictionaries' => 'Dictionaries'
     ],
 ];

@@ -9,7 +9,12 @@ return [
         'post' => 'Статья',
         'posts' => 'Статьи',
         'parent_post_review'=>'Родительский отзыв',
-        'child_post_reviews'=>'Дочерние отзывы'
+        'child_post_reviews'=>'Дочерние отзывы',
+        'page' => 'Страница',
+        'page_review'=>'Отзыв',
+        'page_reviews'=>'Отзывы',
+        'parent_page_review'=>'Родительский отзыв',
+        'child_page_reviews'=>'Дочерние отзывы',
     ],
     'data_types' => [
         'tag' => [
@@ -20,9 +25,17 @@ return [
             'singular' => 'Отзыв',
             'plural'   => 'Отзывы',
         ],
+        'page_review' => [
+            'singular' => 'Отзыв',
+            'plural'   => 'Отзывы',
+        ],
     ],
     'menu_items' => [
         'tags' => 'Тэги',
+        'post_root' => 'Статьи',
         'post_reviews' => 'Отзывы',
+        'page_root' => 'Страницы',
+        'page_reviews' => 'Отзывы',
+        'dictionaries' => 'Словари'
     ],
 ];

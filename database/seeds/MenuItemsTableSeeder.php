@@ -33,22 +33,6 @@ class MenuItemsTableSeeder extends Seeder
 
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
-            'title'   => __('voyager::seeders.menu_items.media'),
-            'url'     => '',
-            'route'   => 'voyager.media.index',
-        ]);
-        if (!$menuItem->exists) {
-            $menuItem->fill([
-                'target'     => '_self',
-                'icon_class' => 'voyager-images',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 5,
-            ])->save();
-        }
-
-        $menuItem = MenuItem::firstOrNew([
-            'menu_id' => $menu->id,
             'title'   => __('voyager::seeders.menu_items.users'),
             'url'     => '',
             'route'   => 'voyager.users.index',
@@ -59,7 +43,38 @@ class MenuItemsTableSeeder extends Seeder
                 'icon_class' => 'voyager-person',
                 'color'      => null,
                 'parent_id'  => null,
+                'order'      => 2,
+            ])->save();
+        }
+
+        $menuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => __('voyager::seeders.menu_items.media'),
+            'url'     => '',
+            'route'   => 'voyager.media.index',
+        ]);
+        if (!$menuItem->exists) {
+            $menuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-images',
+                'color'      => null,
+                'parent_id'  => null,
                 'order'      => 3,
+            ])->save();
+        }
+
+        $dictionariesRootMenuItem = MenuItem::firstOrNew([
+            'menu_id' => $menu->id,
+            'title'   => __('seeders.menu_items.dictionaries'),
+            'url'     => '',
+        ]);
+        if (!$dictionariesRootMenuItem->exists) {
+            $dictionariesRootMenuItem->fill([
+                'target'     => '_self',
+                'icon_class' => 'voyager-folder',
+                'color'      => null,
+                'parent_id'  => null,
+                'order'      => 6,
             ])->save();
         }
 
@@ -74,7 +89,7 @@ class MenuItemsTableSeeder extends Seeder
                 'target'     => '_self',
                 'icon_class' => 'voyager-lock',
                 'color'      => null,
-                'parent_id'  => null,
+                'parent_id'  => $dictionariesRootMenuItem->id,
                 'order'      => 2,
             ])->save();
         }
@@ -169,7 +184,7 @@ class MenuItemsTableSeeder extends Seeder
                 'target'     => '_self',
                 'icon_class' => 'voyager-settings',
                 'color'      => null,
-                'parent_id'  => null,
+                'parent_id'  => $toolsMenuItem->id,
                 'order'      => 14,
             ])->save();
         }

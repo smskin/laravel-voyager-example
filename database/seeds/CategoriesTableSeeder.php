@@ -159,6 +159,11 @@ class CategoriesTableSeeder extends Seeder
 
         //Menu Item
         $menu = Menu::where('name', 'admin')->firstOrFail();
+        $rootMenuItem = MenuItem::where('menu_id', $menu->id)
+            ->where('title',__('seeders.menu_items.dictionaries'))
+            ->whereNull('parent_id')
+            ->firstOrFail();
+
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
             'title'   => __('voyager::seeders.menu_items.categories'),
@@ -170,7 +175,7 @@ class CategoriesTableSeeder extends Seeder
                 'target'     => '_self',
                 'icon_class' => 'voyager-categories',
                 'color'      => null,
-                'parent_id'  => null,
+                'parent_id'  => $rootMenuItem->id,
                 'order'      => 8,
             ])->save();
         }

@@ -88,7 +88,7 @@
                         $model = app($options->model);
                         $dataType = Voyager::model('DataType')->where('slug', '=', $model->table)->first();
 
-                        if ($options->list_type === 'nested'){
+                        if (@$options->list_type === 'nested'){
                             function getList($model, $options, $relationshipData, $dataType):  array
                             {
                                 return $model::where($options->column, $relationshipData->{$options->key})->get()->map(function($item, $key) use ($model, $dataType, $options, $relationshipData){

@@ -147,7 +147,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 1,
                 'delete'       => 0,
                 'details'      => [
-                    'model'       => 'TCG\\Voyager\\Models\\Role',
+                    'model'       => 'App\\DBContext\\Role',
                     'table'       => 'roles',
                     'type'        => 'belongsTo',
                     'column'      => 'role_id',
@@ -172,7 +172,7 @@ class DataRowsTableSeeder extends Seeder
                 'add'          => 1,
                 'delete'       => 0,
                 'details'      => [
-                    'model'       => 'TCG\\Voyager\\Models\\Role',
+                    'model'       => 'App\\DBContext\\Role',
                     'table'       => 'roles',
                     'type'        => 'belongsToMany',
                     'column'      => 'id',

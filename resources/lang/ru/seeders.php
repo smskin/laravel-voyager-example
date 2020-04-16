@@ -29,6 +29,10 @@ return [
             'singular' => 'Отзыв',
             'plural'   => 'Отзывы',
         ],
+        'poll'=>[
+            'singular' => 'Опрос',
+            'plural'   => 'Опросы',
+        ]
     ],
     'menu_items' => [
         'tags' => 'Тэги',
@@ -36,6 +40,8 @@ return [
         'post_reviews' => 'Отзывы',
         'page_root' => 'Страницы',
         'page_reviews' => 'Отзывы',
-        'dictionaries' => 'Словари'
+        'dictionaries' => 'Словари',
+        'poll_root' => 'Опросы',
+        'polls'=>'Опросы'
     ],
 ];

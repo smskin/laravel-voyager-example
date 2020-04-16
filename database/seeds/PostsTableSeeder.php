@@ -325,7 +325,7 @@ class PostsTableSeeder extends Seeder
             ])->save();
         }
 
-        $dataRow = $this->dataRow($postDataType, 'post_belongstomany_tag_relationship');
+        $dataRow = $this->dataRow($postDataType, 'post_belongstomany_user_relationship');
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'relationship',

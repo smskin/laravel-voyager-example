@@ -29,6 +29,10 @@ return [
             'singular' => 'Page review',
             'plural'   => 'Page reviews',
         ],
+        'poll'=>[
+            'singular' => 'Poll',
+            'plural'   => 'Polls',
+        ]
     ],
     'menu_items' => [
         'tags'        => 'Tags',
@@ -36,6 +40,8 @@ return [
         'post_reviews'        => 'Post reviews',
         'page_root' => 'Pages',
         'page_reviews'        => 'Page reviews',
-        'dictionaries' => 'Dictionaries'
+        'dictionaries' => 'Dictionaries',
+        'poll_root' => 'Polls',
+        'polls'=>'Polls'
     ],
 ];

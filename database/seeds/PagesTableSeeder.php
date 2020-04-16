@@ -229,7 +229,7 @@ class PagesTableSeeder extends Seeder
             ])->save();
         }
 
-        $dataRow = $this->dataRow($pageDataType, 'page_belongstomany_tag_relationship');
+        $dataRow = $this->dataRow($pageDataType, 'page_belongstomany_user_relationship');
         if (!$dataRow->exists) {
             $dataRow->fill([
                 'type'         => 'relationship',

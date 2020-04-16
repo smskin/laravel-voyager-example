@@ -203,6 +203,7 @@ class PostReviewsTableSeeder extends Seeder
                 'add'          => 1,
                 'delete'       => 1,
                 'details'      => [
+                    'list_type'  => 'nested',
                     'model'       => 'App\\DBContext\\PostReview',
                     'table'       => 'post_reviews',
                     'type'        => 'hasMany',

@@ -15,6 +15,9 @@ return [
         'page_reviews'=>'Page reviews',
         'parent_page_review'=>'Parent page review',
         'child_page_reviews'=>'Child page reviews',
+        'poll'=>'Poll',
+        'type'=>'Type',
+        'question'=>'Question'
     ],
     'data_types' => [
         'tag'     => [
@@ -32,6 +35,14 @@ return [
         'poll'=>[
             'singular' => 'Poll',
             'plural'   => 'Polls',
+        ],
+        'poll_question' => [
+            'singular' => 'Poll question',
+            'plural'   => 'Poll questions',
+        ],
+        'poll_question_answer'=>[
+            'singular' => 'Poll question answer',
+            'plural'   => 'Poll question answers',
         ]
     ],
     'menu_items' => [

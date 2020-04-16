@@ -6,7 +6,7 @@ return [
         'tags' => 'Тэги',
         'post_review' => 'Отзыв',
         'post_reviews' => 'Отзывы',
-        'post' => 'Статьи',
+        'post' => 'Статья',
         'posts' => 'Статьи',
         'parent_post_review'=>'Родительский отзыв',
         'child_post_reviews'=>'Дочерние отзывы'

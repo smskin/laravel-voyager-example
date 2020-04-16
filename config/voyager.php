@@ -194,8 +194,8 @@ return [
     ],
 
     'additional_js' => [
-        '/assets/admin/modules/tinymce.js'
-        //'js/custom.js',
+        '/vendor/voyager/js/app.js',
+        '/vendor/voyager/js/voyager_tinymce.js',
     ],
 
     'googlemaps' => [

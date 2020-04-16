@@ -184,7 +184,8 @@ class PostReviewsTableSeeder extends Seeder
                     'label'       => 'body',
                     'pivot_table' => 'post_reviews',
                     'pivot'       => 0,
-                    'taggable'    => 0
+                    'taggable'    => 0,
+                    'depend_on_fields'=> '[{"field":"post_id","operator":"="}]'
                 ],
                 'order'        => 9,
             ])->save();

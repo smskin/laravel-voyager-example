@@ -14,7 +14,7 @@ class PostController extends VoyagerBaseController
         return parent::index($request);
     }
 
-    protected function applyIndexScope(EloquentBuilder $model): void
+    protected function applyIndexQueryBuilder(EloquentBuilder $model): void
     {
         $scopes = [];
 

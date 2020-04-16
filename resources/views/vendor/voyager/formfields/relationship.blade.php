@@ -22,12 +22,12 @@
                 @endif
 
             @else
-
                 <select
-                    class="form-control select2-ajax" name="{{ $options->column }}"
+                    class="form-control select2-ajax-custom" name="{{ $options->column }}"
                     data-get-items-route="{{route('voyager.' . $dataType->slug.'.relation')}}"
                     data-get-items-field="{{$row->field}}"
                     @if(!is_null($dataTypeContent->getKey())) data-id="{{$dataTypeContent->getKey()}}" @endif
+                    @if (!is_null(@$row->details->depend_on_fields)) data-depend-on-fields='{!! json_encode($row->details->depend_on_fields) !!}' @endif
                     data-method="{{ !is_null($dataTypeContent->getKey()) ? 'edit' : 'add' }}"
                 >
                     @php

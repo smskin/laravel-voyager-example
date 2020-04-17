@@ -52,7 +52,6 @@ return [
         'page_root' => 'Pages',
         'page_reviews'        => 'Page reviews',
         'dictionaries' => 'Dictionaries',
-        'poll_root' => 'Polls',
         'polls'=>'Polls'
     ],
 ];

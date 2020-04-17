@@ -15,6 +15,9 @@ return [
         'page_reviews'=>'Отзывы',
         'parent_page_review'=>'Родительский отзыв',
         'child_page_reviews'=>'Дочерние отзывы',
+        'poll'=>'Опрос',
+        'type'=>'Тип',
+        'question'=>'Вопрос'
     ],
     'data_types' => [
         'tag' => [
@@ -32,6 +35,14 @@ return [
         'poll'=>[
             'singular' => 'Опрос',
             'plural'   => 'Опросы',
+        ],
+        'poll_question' => [
+            'singular' => 'Вопрос',
+            'plural'   => 'Вопросы',
+        ],
+        'poll_question_answer'=>[
+            'singular' => 'Ответ на вопрос',
+            'plural'   => 'Ответы на вопрос',
         ]
     ],
     'menu_items' => [
@@ -41,7 +52,6 @@ return [
         'page_root' => 'Страницы',
         'page_reviews' => 'Отзывы',
         'dictionaries' => 'Словари',
-        'poll_root' => 'Опросы',
         'polls'=>'Опросы'
     ],
 ];

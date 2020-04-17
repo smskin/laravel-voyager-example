@@ -184,22 +184,6 @@ class PollsTableSeeder extends Seeder
         //Menu Item
         $menu = Menu::where('name', 'admin')->firstOrFail();
 
-        $rootMenuItem = MenuItem::firstOrNew([
-            'menu_id' => $menu->id,
-            'title'   => __('seeders.menu_items.poll_root'),
-            'url'     => '',
-        ]);
-        if (!$rootMenuItem->exists) {
-            $rootMenuItem->fill([
-                'target'     => '_self',
-                'icon_class' => 'voyager-news',
-                'color'      => null,
-                'parent_id'  => null,
-                'order'      => 5,
-            ])->save();
-        }
-
-
         $menuItem = MenuItem::firstOrNew([
             'menu_id' => $menu->id,
             'title'   => __('seeders.menu_items.polls'),
@@ -211,7 +195,7 @@ class PollsTableSeeder extends Seeder
                 'target'     => '_self',
                 'icon_class' => 'voyager-news',
                 'color'      => null,
-                'parent_id'  => $rootMenuItem->id,
+                'parent_id'  => null,
                 'order'      => 1,
             ])->save();
         }
